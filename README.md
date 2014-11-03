@@ -14,7 +14,7 @@ Install
 Run
 ---
 
-A simple server is used to serve index.html for dev, and creates a compiled version in `./dist` for use as a bookmarklet.
+A simple server is used to serve `index.html` for dev, and creates a compiled version in `./dist` for use as a bookmarklet.
 
     > gulp
     > open http://localhost:8080/
