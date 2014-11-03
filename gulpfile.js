@@ -3,6 +3,7 @@ var react = require('gulp-react');
 var connect = require('gulp-connect');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var cssmin = require('gulp-cssmin');
 
 
 gulp.task('connect', function() {
@@ -19,6 +20,7 @@ gulp.task('html', function () {
 });
 gulp.task('css', function () {
     return gulp.src('css/main.css')
+        .pipe(cssmin())
         .pipe(gulp.dest('dist/css'));
 });
 gulp.task('img', function () {
@@ -47,4 +49,4 @@ gulp.task('watch', function () {
 });
 
 
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['build', 'connect', 'watch']);
