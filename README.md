@@ -36,4 +36,5 @@ TODO
 ----
 
 - Build inlined CSS & sprite image data in order to get it working on HTTPS due to CORS.
+- Manage cascading deselect.
 - Add tests.

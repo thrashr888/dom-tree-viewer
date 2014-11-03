@@ -196,7 +196,7 @@ var DVContainer = React.createClass({
 
     this.setState({open: false});
 
-    // Cleanup our assets
+    // Cleanup ourselves
     $body.removeChild($wrapper);
     $head.removeChild($link);
   },
@@ -226,7 +226,7 @@ var DVContainer = React.createClass({
 });
 
 
-// delay a bit to let the target page load
+// delay a bit to let the target page load in dev
 setTimeout(function () {
     React.render(
       <DVContainer target={$html}></DVContainer>,

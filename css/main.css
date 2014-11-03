@@ -1,3 +1,4 @@
+/*Reset*/
 .dom-viewer-wrapper div, .dom-viewer-wrapper span, .dom-viewer-wrapper applet, .dom-viewer-wrapper object, .dom-viewer-wrapper iframe, .dom-viewer-wrapper h1, .dom-viewer-wrapper h2, .dom-viewer-wrapper h3, .dom-viewer-wrapper h4, .dom-viewer-wrapper h5, .dom-viewer-wrapper h6, .dom-viewer-wrapper p, .dom-viewer-wrapper blockquote, .dom-viewer-wrapper pre, .dom-viewer-wrapper a, .dom-viewer-wrapper abbr, .dom-viewer-wrapper acronym, .dom-viewer-wrapper address, .dom-viewer-wrapper big, .dom-viewer-wrapper cite, .dom-viewer-wrapper code, .dom-viewer-wrapper del, .dom-viewer-wrapper dfn, .dom-viewer-wrapper em, .dom-viewer-wrapper img, .dom-viewer-wrapper ins, .dom-viewer-wrapper kbd, .dom-viewer-wrapper q, .dom-viewer-wrapper s, .dom-viewer-wrapper samp, .dom-viewer-wrapper small, .dom-viewer-wrapper strike, .dom-viewer-wrapper strong, .dom-viewer-wrapper sub, .dom-viewer-wrapper sup, .dom-viewer-wrapper tt, .dom-viewer-wrapper var, .dom-viewer-wrapper b, .dom-viewer-wrapper u, .dom-viewer-wrapper i, .dom-viewer-wrapper center, .dom-viewer-wrapper dl, .dom-viewer-wrapper dt, .dom-viewer-wrapper dd, .dom-viewer-wrapper ol, .dom-viewer-wrapper ul, .dom-viewer-wrapper li, .dom-viewer-wrapper fieldset, .dom-viewer-wrapper form, .dom-viewer-wrapper label, .dom-viewer-wrapper legend, .dom-viewer-wrapper table, .dom-viewer-wrapper caption, .dom-viewer-wrapper tbody, .dom-viewer-wrapper tfoot, .dom-viewer-wrapper thead, .dom-viewer-wrapper tr, .dom-viewer-wrapper th, .dom-viewer-wrapper td, .dom-viewer-wrapper article, .dom-viewer-wrapper aside, .dom-viewer-wrapper canvas, .dom-viewer-wrapper details, .dom-viewer-wrapper embed, .dom-viewer-wrapper figure, .dom-viewer-wrapper figcaption, .dom-viewer-wrapper footer, .dom-viewer-wrapper header, .dom-viewer-wrapper hgroup, .dom-viewer-wrapper menu, .dom-viewer-wrapper nav, .dom-viewer-wrapper output, .dom-viewer-wrapper ruby, .dom-viewer-wrapper section, .dom-viewer-wrapper summary, .dom-viewer-wrapper time, .dom-viewer-wrapper mark, .dom-viewer-wrapper audio, .dom-viewer-wrapper video {
     margin: 0;
     padding: 0;
@@ -12,24 +13,26 @@
 .dom-viewer-wrapper a:hover {
     text-decoration: underline;
 }
-
 .dom-viewer-wrapper * {
     box-sizing: border-box;
 }
+/*end Reset*/
 
+/*Main Container*/
 .dom-viewer-wrapper .dv-container {
-    display: none;
+    display: none; /*Closed*/
 
     width: 320px;
     /*height: 640px;*/ /*pixel perfect*/
     height: 90vh;
 
+    /*Centered, expandable height*/
     position: fixed;
     left: calc(50% - 160px);
     /*top: calc(50% - 320px);*/ /*pixel perfect*/
     top: calc(50% - 45vh);
 
-    /*-webkit-font-smoothing: antialiased;*/
+    /*-webkit-font-smoothing: antialiased;*/ /*hard to tell from source image*/
     font-family: sans-serif;
     font-size: 12px;
     line-height: 20px;
@@ -45,7 +48,7 @@
 
 /*Open/Close DV Mechanism*/
 .dom-viewer-wrapper .dv-container.dv-open {
-    display: block;
+    display: block; /*Open*/
 }
 
 /*Tree*/
@@ -64,13 +67,12 @@
 /*Tree Items*/
 .dom-viewer-wrapper .dv-tree ul,
 .dom-viewer-wrapper .dv-tree li {
-    /*padding-left: 24px;*/
     padding-left: 0;
     text-transform: capitalize;
 }
 /*First Item*/
 .dom-viewer-wrapper .dv-tree > .dv-branch {
-    /*padding-left: 0;*/
+    /*Padding managed explicitly below*/
 }
 
 /*Hide/Show Children of Unexpanded*/
@@ -93,6 +95,7 @@
     width: 20px;
 }
 .dom-viewer-wrapper .dv-tree ul > .dv-branch-node .dv-expand-control:before {
+    /*Sprite*/
     content: " ";
     display: inline-block;
     background-image: url("../img/icons-mdpi.png");
@@ -103,6 +106,7 @@
 }
 /*Opened*/
 .dom-viewer-wrapper .dv-tree ul.dv-expanded > .dv-branch-node .dv-expand-control:before {
+    /*Sprite*/
     content: " ";
     display: inline-block;
     background-image: url("../img/icons-mdpi.png");
@@ -112,6 +116,8 @@
     opacity: 0.25;
 }
 
+/*We need the selection background color to span 100% width,
+so nested depth doesn't work in this case.*/
 .dom-viewer-wrapper .dv-level-0 > .dv-branch-node { padding-left: 24px; }
 .dom-viewer-wrapper .dv-level-1 > .dv-branch-node { padding-left: 48px; }
 .dom-viewer-wrapper .dv-level-2 > .dv-branch-node { padding-left: 72px; }
@@ -150,6 +156,7 @@
     /*cursor: pointer;*/
 }
 .dom-viewer-wrapper .dv-branch > .dv-branch-node span:before {
+    /*Sprite*/
     content: " ";
     display: inline-block;
     background-image: url("../img/icons-mdpi.png");
@@ -165,17 +172,18 @@
 
 /*File*/
 .dom-viewer-wrapper .dv-node span {
-    text-overflow: ellipsis;
     display: inline-block;
 
     height: 16px;
     width: 100%;
 
+    text-overflow: ellipsis;
     word-wrap: break-word;
     overflow: hidden;
     white-space: nowrap;
 }
 .dom-viewer-wrapper .dv-node > span:before {
+    /*Sprite*/
     content: " ";
     display: inline-block;
     background-image: url("../img/icons-mdpi.png");
@@ -188,11 +196,12 @@
 .dom-viewer-wrapper .dv-tree .dv-branch.dv-selected > .dv-branch-node,
 .dom-viewer-wrapper .dv-tree .dv-node.dv-selected {
     background-color: #4285F4;
-    color: white;
+    color: #FFF;
 }
 
 /*Close*/
 .dom-viewer-wrapper .dv-close {
+    /*Sprite*/
     content: " ";
     display: inline-block;
     background-image: url("../img/icons-mdpi.png");
@@ -211,21 +220,21 @@
 
 /*Header*/
 .dom-viewer-wrapper .dv-title {
+    height: 50px;
+    padding: 20px 15px;
+
     font-weight: 500;
     font-size: 13px;
     line-height: 13px;
-
-    height: 50px;
-    padding: 20px 15px;
 
     color: #4C4C4C;
     border-bottom: 1px solid rgb(226,226,226);
 }
 .dom-viewer-wrapper .dv-label {
-    line-height: 20px;
-
     height: 40px;
     padding: 10px 15px;
+
+    line-height: 20px;
 
     color: #B2B2B2;
     border-bottom: 1px solid rgb(226,226,226);
@@ -246,6 +255,8 @@
 }
 .dom-viewer-wrapper .dv-footer button {
     height: 28px;
+    padding: 1px 15px;
+
     color: #FFF;
     background-color: #4285F4;
     border: 1px solid #3C78DC;
@@ -253,6 +264,4 @@
 
     position: relative;
     float: right;
-
-    padding: 1px 15px;
 }
