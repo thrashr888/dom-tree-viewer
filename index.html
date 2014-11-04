@@ -18,8 +18,12 @@
         <!-- <link rel="stylesheet" href="css/main.css"> -->
     </head>
     <body>
-    Some test text
-    <p>Some test <!-- comment --> text</p>
+
+    Some unwrapped test text
+
+    <!-- Some commented out text -->
+
+    <p>Some test text before a comment <!-- comment --> text after a comment.</p>
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -49,9 +53,7 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Bookmarklet</h1>
-        <p><input value="javascript:(function (){document.getElementsByTagName('head')[0].appendChild(document.createElement('script')).src='http://localhost:8080/dist/js/all.js?'+Math.random();}());" style="width: 100%;" onClick="this.select();" /></p>
-        <p>Drag this to your bookmarks: </p>
+        <h1>DOM Tree Viewer</h1>
         <p><a class="btn btn-primary btn-lg" role="button" href="javascript:%28function%20%28%29%7Bdocument.getElementsByTagName%28%27head%27%29%5B0%5D.appendChild%28document.createElement%28%27script%27%29%29.src%3D%27http%3A%2F%2Flocalhost%3A8080%2Fdist%2Fjs%2Fall.js%3F%27%2BMath.random%28%29%3B%7D%28%29%29%3B">DOM Tree Viewer</a></p>
       </div>
     </div>

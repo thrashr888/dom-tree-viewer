@@ -15,7 +15,7 @@
 
 
 // config
-var HOSTNAME = 'http://localhost:8080';
+var HOSTNAME = '.';
 
 // cache wrapper elements
 var $html = document.getElementsByTagName('html')[0];
@@ -44,13 +44,16 @@ var DVNode = React.createClass({
   },
 
   handleNodeClick: function (e) {
+    if (e.target.className === 'dv-expand-control') {
+      return;
+    }
+
     e.preventDefault();
-    console.log('click', e)
-    if (this.state.selected === false && (e.shiftKey === true || e.ctrlKey === true || e.metaKey === true)) {
+
+    if (this.state.selected === false) {
       this.setState({selected: true});
     } else {
       this.setState({selected: false});
-      this.props.deselect();
     }
   },
 
@@ -77,15 +80,20 @@ var DVNode = React.createClass({
 
 var DVBranch = React.createClass({
   getInitialState: function() {
-    return {selected: false, expanded: false};
+    if (this.props.level === -1) {
+      return {selected: false, expanded: true};
+    } else {
+      return {selected: false, expanded: false};
+    }
   },
 
   handleExpandClick: function (e) {
     e.preventDefault();
 
-    if (this.props.isPrivate || this.props.target.childNodes.length === 0) {
-      return;
-    }
+    // commented out to allow expansion on private folders
+    // if (this.props.isPrivate || this.props.target.childNodes.length === 0) {
+    //   return;
+    // }
 
     if (this.state.expanded === true) {
       this.setState({expanded: false});
@@ -95,21 +103,17 @@ var DVBranch = React.createClass({
   },
 
   handleNodeClick: function (e) {
+    if (e.target.className === 'dv-expand-control') {
+      return;
+    }
+
     e.preventDefault();
 
-    if (this.state.selected === false && (e.shiftKey === true || e.ctrlKey === true || e.metaKey === true)) {
+    if (this.state.selected === false) {
       this.setState({selected: true});
     } else {
       this.setState({selected: false});
-      // this.props.deselect();
     }
-  },
-
-  handleDeselect: function (e) {
-    // not implemented
-
-    // this.setState({expanded: false});
-    // this.props.deselect(); // bubble up the tree.
   },
 
   render: function() {
@@ -139,10 +143,10 @@ var DVBranch = React.createClass({
             isPrivate = true; // TODO is this working?
         }
         // console.log(index === rand)
-        return <DVBranch target={node} isPrivate={isPrivate} deselect={this.handleDeselect} level={level + 1} />
+        return <DVBranch target={node} isPrivate={isPrivate} level={level + 1} />
       } else if (typeof node === 'String' || (node.nodeName === '#text' && node.textContent.trim() !== '')) {
         // console.log('DVNode', node);
-        return <DVNode target={node} deselect={this.handleDeselect} level={level + 1} />
+        return <DVNode target={node} level={level + 1} />
       }
     });
 
@@ -158,12 +162,15 @@ var DVBranch = React.createClass({
 
     return (
       <ul className={classes}>
-        <div className="dv-branch-node" onClick={this.handleNodeClick}>
-          {this.props.target.childNodes.length > 0 ?
-            <a className="dv-expand-control" href="#" onClick={this.handleExpandClick}></a>
-            : <a className="dv-expand-control-empty" />}
-          <span>{this.props.target.localName}</span>
-        </div>
+        { this.props.level >= 0 ?
+          <div className="dv-branch-node" onClick={this.handleNodeClick}>
+            {this.props.target.childNodes.length > 0 ?
+              <a className="dv-expand-control" href="#" onClick={this.handleExpandClick}></a>
+              : <a className="dv-expand-control-empty" />}
+            <span>{this.props.target.localName}</span>
+          </div>
+          : null
+        }
         {Nodes}
       </ul>
     );
@@ -172,14 +179,10 @@ var DVBranch = React.createClass({
 
 
 var DVTree = React.createClass({
-  handleDeselect: function () {
-    // ignore for top-level branch
-  },
-
   render: function() {
     return (
       <div className="dv-tree">
-        <DVBranch target={this.props.target} deselect={this.handleDeselect} level={0} />
+        <DVBranch target={this.props.target} level={-1} />
       </div>
     );
   }
