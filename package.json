@@ -13,7 +13,9 @@
     "gulp-connect": "^2.2.0",
     "gulp-cssmin": "^0.1.6",
     "gulp-react": "^2.0.0",
+    "gulp-s3": "^0.3.0",
     "gulp-uglify": "^1.0.1",
+    "knox": "http://github.com/kilianc/knox/tarball/features/v0.11.14",
     "react": "^0.12.0"
   }
 }

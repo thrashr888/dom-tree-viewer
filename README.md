@@ -32,6 +32,14 @@ Sites tested on:
 - http://gulpjs.com/plugins/
 
 
+Deploy/Demo
+-----------
+
+The demo is hosted at (http://dom-tree-viewer-demo.s3-website-us-west-1.amazonaws.com/)[http://dom-tree-viewer-demo.s3-website-us-west-1.amazonaws.com/].
+
+    > gulp deploy
+
+
 TODO
 ----
 
