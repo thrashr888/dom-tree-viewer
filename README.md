@@ -46,3 +46,5 @@ TODO
 - Build inlined CSS & sprite image data in order to get it working on HTTPS due to CORS.
 - Manage cascading deselect.
 - Add tests.
+
+![screenshot](https://www.evernote.com/l/AAG7UFsQR3xB8JcXaQ86OXUwZ17DpqZ_SS8B/image.png)
